@@ -73,13 +73,10 @@ export default function AgregarPartido() {
           <MenuItem disabled value="Seleccionar">
             Seleccionar
           </MenuItem>
-          <MenuItem value="U-10">U-10</MenuItem>
-          <MenuItem value="U-12">U-12</MenuItem>
-          <MenuItem value="U-14 F">U-14 F</MenuItem>
-          <MenuItem value="U-14 M">U-14 M</MenuItem>
-          <MenuItem value="U-16 F">U-16 F</MenuItem>
+          <MenuItem value="U-15 M">U-15 M</MenuItem>
+          <MenuItem value="U-15 F">U-15 F</MenuItem>
+          <MenuItem value="U-17 F">U-17 F</MenuItem>
           <MenuItem value="U-17 M">U-17 M</MenuItem>
-          <MenuItem value="U-18 F">U-18 F</MenuItem>
         </Select>
       </Box>
 
@@ -138,16 +135,11 @@ export default function AgregarPartido() {
               <MenuItem value="Bahiense C1">Bahiense C1</MenuItem>
               <MenuItem value="Bahiense C2">Bahiense C2</MenuItem>
               <MenuItem value="Bahiense C3">Bahiense C3</MenuItem>
-              <MenuItem value="Liniers C1">Liniers C1</MenuItem>
-              <MenuItem value="Liniers C2">Liniers C2</MenuItem>
-              <MenuItem value="Argentino C1">Argentino C1</MenuItem>
-              <MenuItem value="Estrella C1">Estrella C1</MenuItem>
-              <MenuItem value="Comercial C1">Comercial C1</MenuItem>
-              <MenuItem value="El Nacional C1">El Nacional C1</MenuItem>
-              <MenuItem value="Pacifico C1">Pacifico C1</MenuItem>
-              <MenuItem value="El Nacional (Chiclana)">
-                El Nacional Centro
-              </MenuItem>
+              <MenuItem value="Liniers C1">Sportivo</MenuItem>
+              <MenuItem value="Liniers C2">Argentino</MenuItem>
+              <MenuItem value="Argentino C1">Barracas</MenuItem>
+              <MenuItem value="Estrella C1">Comercial</MenuItem>
+              <MenuItem value="Comercial C1">Pacifico</MenuItem>
             </Select>
           </Box>
 
@@ -159,8 +151,8 @@ export default function AgregarPartido() {
               placeholder="Fecha"
               name="fecha"
               type="date"
-              min="2022-11-19"
-              max="2022-11-21"
+              min="2023-04-06"
+              max="2023-04-09"
               onChange={(e) => handleSelectCategory(e)}
             />
           </Box>

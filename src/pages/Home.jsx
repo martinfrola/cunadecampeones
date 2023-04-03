@@ -18,7 +18,7 @@ const Home = () => {
     if (activo) {
       intervalo = setInterval(() => {
         cambiarVista(), console.log("entro al interval");
-      }, 4000);
+      }, 60000);
     }
     return () => clearInterval(intervalo);
   }, [activo]);

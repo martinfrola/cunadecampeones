@@ -19,38 +19,63 @@ export default function Posiciones() {
   useEffect(() => {
     setLoading(true);
     equiposData().then((res) => {
-      const u14f1 = res.filter(
-        (equipo) => equipo.category === "U-14 F" && equipo.zona === 1
+      const u15m1 = res.filter(
+        (equipo) => equipo.category === "U-15 M" && equipo.zona === 1
       );
-      const u14f2 = res.filter(
-        (equipo) => equipo.category === "U-14 F" && equipo.zona === 2
+      const u15m2 = res.filter(
+        (equipo) => equipo.category === "U-15 M" && equipo.zona === 2
       );
-      const u14m1 = res.filter(
-        (equipo) => equipo.category === "U-14 M" && equipo.zona === 1
+      const u15m3 = res.filter(
+        (equipo) => equipo.category === "U-15 M" && equipo.zona === 3
       );
-      const u14m2 = res.filter(
-        (equipo) => equipo.category === "U-14 M" && equipo.zona === 2
+      const u15m4 = res.filter(
+        (equipo) => equipo.category === "U-15 M" && equipo.zona === 4
       );
-      const u14m3 = res.filter(
-        (equipo) => equipo.category === "U-14 M" && equipo.zona === 3
+      const u15f1 = res.filter(
+        (equipo) => equipo.category === "U-15 F" && equipo.zona === 1
       );
-      const u14m4 = res.filter(
-        (equipo) => equipo.category === "U-14 M" && equipo.zona === 4
+      const u15f2 = res.filter(
+        (equipo) => equipo.category === "U-15 F" && equipo.zona === 2
       );
-      const u16f = res.filter((equipo) => equipo.category === "U-16 F");
-      const u17m = res.filter((equipo) => equipo.category === "U-17 M");
-      const u18f = res.filter((equipo) => equipo.category === "U-18 F");
-
+      const u15f3 = res.filter(
+        (equipo) => equipo.category === "U-15 F" && equipo.zona === 3
+      );
+      const u17f1 = res.filter(
+        (equipo) => equipo.category === "U-17 F" && equipo.zona === 1
+      );
+      const u17f2 = res.filter(
+        (equipo) => equipo.category === "U-17 F" && equipo.zona === 2
+      );
+      const u17f3 = res.filter(
+        (equipo) => equipo.category === "U-17 F" && equipo.zona === 3
+      );
+      const u17m1 = res.filter(
+        (equipo) => equipo.category === "U-17 M" && equipo.zona === 1
+      );
+      const u17m2 = res.filter(
+        (equipo) => equipo.category === "U-17 M" && equipo.zona === 2
+      );
+      const u17m3 = res.filter(
+        (equipo) => equipo.category === "U-17 M" && equipo.zona === 3
+      );
+      const u17m4 = res.filter(
+        (equipo) => equipo.category === "U-17 M" && equipo.zona === 4
+      );
       setEquiposFiltrados([
-        { category: "U-14 F Zona 1", equipos: u14f1 },
-        { category: "U-14 F Zona 2", equipos: u14f2 },
-        { category: "U-14 M Zona 1", equipos: u14m1 },
-        { category: "U-14 M Zona 2", equipos: u14m2 },
-        { category: "U-14 M Zona 3", equipos: u14m3 },
-        { category: "U-14 M Zona 4", equipos: u14m4 },
-        { category: "U-16 F", equipos: u16f },
-        { category: "U-17 M", equipos: u17m },
-        { category: "U-18 F", equipos: u18f },
+        { category: "U-15 M Zona 1", equipos: u15m1 },
+        { category: "U-15 M Zona 2", equipos: u15m2 },
+        { category: "U-15 M Zona 3", equipos: u15m3 },
+        { category: "U-15 M Zona 4", equipos: u15m4 },
+        { category: "U-15 F Zona 1", equipos: u15f1 },
+        { category: "U-15 F Zona 2", equipos: u15f2 },
+        { category: "U-15 F Zona 3", equipos: u15f3 },
+        { category: "U-17 F Zona 1", equipos: u17f1 },
+        { category: "U-17 F Zona 2", equipos: u17f2 },
+        { category: "U-17 F Zona 3", equipos: u17f3 },
+        { category: "U-17 M Zona 1", equipos: u17m1 },
+        { category: "U-17 M Zona 2", equipos: u17m2 },
+        { category: "U-17 M Zona 3", equipos: u17m3 },
+        { category: "U-17 M Zona 4", equipos: u17m4 },
       ]);
 
       setLoading(false);

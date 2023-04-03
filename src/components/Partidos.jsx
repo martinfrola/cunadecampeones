@@ -137,14 +137,10 @@ export default function Partidos({ modoAuto }) {
             }}
           >
             <MenuItem value="Todas">Todas</MenuItem>
-            <MenuItem value="U-10">U-10</MenuItem>
-            <MenuItem value="U-12">U-12</MenuItem>
-            <MenuItem value="U-14 F">U-14 F</MenuItem>
-            <MenuItem value="U-14 M">U-14 M</MenuItem>
-            <MenuItem value="U-16 F">U-16 F</MenuItem>
-            <MenuItem value="U-16 M">U-16 M</MenuItem>
+            <MenuItem value="U-15 M">U-15 M</MenuItem>
+            <MenuItem value="U-15 F">U-15 F</MenuItem>
+            <MenuItem value="U-17 F">U-17 F</MenuItem>
             <MenuItem value="U-17 M">U-17 M</MenuItem>
-            <MenuItem value="U-18 F">U-18 F</MenuItem>
           </Select>
         </Box>
 
@@ -161,9 +157,10 @@ export default function Partidos({ modoAuto }) {
             }}
           >
             <MenuItem value="Todos">Todos</MenuItem>
-            <MenuItem value={"2022-11-19"}>Sábado 19</MenuItem>
-            <MenuItem value={"2022-11-20"}>Domingo 20</MenuItem>
-            <MenuItem value={"2022-11-21"}>Lunes 21</MenuItem>
+            <MenuItem value={"2023-04-06"}>Jueves 6</MenuItem>
+            <MenuItem value={"2023-04-07"}>Viernes 7</MenuItem>
+            <MenuItem value={"2023-04-08"}>Sabado 8</MenuItem>
+            <MenuItem value={"2023-04-09"}>Domingo 9</MenuItem>
           </Select>
         </Box>
         <Box sx={{ marginRight: 3 }}>

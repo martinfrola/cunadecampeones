@@ -94,7 +94,7 @@ export default function Resultados({ modoAuto }) {
   }, [categoria, dia, equipoSeleccionado]);
 
   return (
-    <div>
+    <Box>
       <Typography
         ref={ref}
         sx={{ textAlign: "center", fontWeight: "bold" }}
@@ -109,7 +109,7 @@ export default function Resultados({ modoAuto }) {
       )}
 
       <Box sx={{ display: "flex", flexDirection: "row", marginBottom: 2 }}>
-        <Box sx={{ marginRight: 5 }}>
+        <Box sx={{ marginRight: 3 }}>
           <InputLabel id="demo-simple-select-label">Categoría</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -181,6 +181,6 @@ export default function Resultados({ modoAuto }) {
           )}
         </Grid>
       </div>
-    </div>
+    </Box>
   );
 }
