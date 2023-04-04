@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { getPartidos } from "../api/partidos";
+import { getPartidos, deletePartido } from "../api/partidos";
 import { addResultado } from "../api/resultados";
-import { deletePartido } from "../api/partidos";
+import { updateEquipos } from "../api/equipos";
 import {
   TextField,
   Select,
@@ -47,7 +47,7 @@ export default function AgregarResultado() {
   const submitResultado = async () => {
     await addResultado(resultado);
     await deletePartido(resultado.id);
-    // await updateEquipos(resultado);
+    await updateEquipos(resultado);
   };
   return (
     <Box>

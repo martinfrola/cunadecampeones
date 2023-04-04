@@ -135,11 +135,11 @@ export default function AgregarPartido() {
               <MenuItem value="Bahiense C1">Bahiense C1</MenuItem>
               <MenuItem value="Bahiense C2">Bahiense C2</MenuItem>
               <MenuItem value="Bahiense C3">Bahiense C3</MenuItem>
-              <MenuItem value="Liniers C1">Sportivo</MenuItem>
-              <MenuItem value="Liniers C2">Argentino</MenuItem>
-              <MenuItem value="Argentino C1">Barracas</MenuItem>
-              <MenuItem value="Estrella C1">Comercial</MenuItem>
-              <MenuItem value="Comercial C1">Pacifico</MenuItem>
+              <MenuItem value="Sportivo">Sportivo</MenuItem>
+              <MenuItem value="Argentino">Argentino</MenuItem>
+              <MenuItem value="Barracas">Barracas</MenuItem>
+              <MenuItem value="Comercial">Comercial</MenuItem>
+              <MenuItem value="Pacifico">Pacifico</MenuItem>
             </Select>
           </Box>
 

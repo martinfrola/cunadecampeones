@@ -57,7 +57,6 @@ const seteoPuntos = (ganador, perdedor, resultado) => {
     resultado.puntos_local < resultado.puntos_visitante
       ? resultado.puntos_local
       : resultado.puntos_visitante;
-  console.log(puntos_ganador, puntos_perdedor);
   getEquipo(ganador).then((res) => {
     const newPuntosLocal = res;
     newPuntosLocal.puntos = res.puntos + 2;
