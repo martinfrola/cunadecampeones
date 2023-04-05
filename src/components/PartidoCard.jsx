@@ -60,7 +60,7 @@ export default function PartidoCard({ partido, type }) {
           <Typography sx={{ fontWeight: "bold" }}>
             Cancha: {partido.cancha}
           </Typography>
-          {partido.cancha === "Bahiense C1" && type === "partido" && (
+          {partido.cancha === "Bahiense C1" && (
             <Link
               href="https://youtu.be/kBuSNVKlgqM"
               target="_blank"
@@ -71,7 +71,7 @@ export default function PartidoCard({ partido, type }) {
               Ver Partido
             </Link>
           )}
-          {partido.cancha === "Bahiense C2" && type === "partido" && (
+          {partido.cancha === "Bahiense C2" && (
             <Link
               href="https://youtu.be/it3IW4KjR9M"
               target="_blank"
@@ -82,31 +82,9 @@ export default function PartidoCard({ partido, type }) {
               Ver Partido
             </Link>
           )}
-          {partido.cancha === "Bahiense C3" && type === "partido" && (
+          {partido.cancha === "Bahiense C3" && (
             <Link
               href="https://youtu.be/plT1VekB_sw"
-              target="_blank"
-              color="secondary"
-              underline="none"
-              sx={{ fontWeight: "bold", fontFamily: "sans-serif" }}
-            >
-              Ver Partido
-            </Link>
-          )}
-          {partido.cancha === "Liniers C1" && type === "partido" && (
-            <Link
-              href="https://youtu.be/XPc_Y4zkPag"
-              target="_blank"
-              color="secondary"
-              underline="none"
-              sx={{ fontWeight: "bold", fontFamily: "sans-serif" }}
-            >
-              Ver Partido
-            </Link>
-          )}
-          {partido.cancha === "Liniers C2" && type === "partido" && (
-            <Link
-              href="https://youtu.be/IJYPOPmNG6E"
               target="_blank"
               color="secondary"
               underline="none"
