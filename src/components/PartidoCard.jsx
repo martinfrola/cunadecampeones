@@ -57,12 +57,12 @@ export default function PartidoCard({ partido, type }) {
           )}
         </Box>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography sx={{ fontWeight: "bold" }}>
+          <Typography sx={{ fontWeight: "bold" }} color="primary.blue">
             Cancha: {partido.cancha}
           </Typography>
           {partido.cancha === "Bahiense C1" && (
             <Link
-              href="https://youtu.be/kBuSNVKlgqM"
+              href="https://www.youtube.com/watch?v=2IuwhgKmMlY"
               target="_blank"
               color="secondary"
               underline="none"
@@ -73,7 +73,7 @@ export default function PartidoCard({ partido, type }) {
           )}
           {partido.cancha === "Bahiense C2" && (
             <Link
-              href="https://youtu.be/it3IW4KjR9M"
+              href="https://www.youtube.com/watch?v=ouJPjoGvmRU"
               target="_blank"
               color="secondary"
               underline="none"
@@ -84,7 +84,7 @@ export default function PartidoCard({ partido, type }) {
           )}
           {partido.cancha === "Bahiense C3" && (
             <Link
-              href="https://youtu.be/plT1VekB_sw"
+              href="https://www.youtube.com/watch?v=ZoeVZwpPeec"
               target="_blank"
               color="secondary"
               underline="none"
@@ -105,7 +105,10 @@ export default function PartidoCard({ partido, type }) {
           <Typography sx={{ fontWeight: "bold", textDecoration: "underline" }}>
             Fecha: {partido.fecha}
           </Typography>
-          <Typography sx={{ fontWeight: "bold", textDecoration: "underline" }}>
+          <Typography
+            color="primary.blue"
+            sx={{ fontWeight: "bold", textDecoration: "underline" }}
+          >
             Hora: {partido.hora}
           </Typography>
         </Box>

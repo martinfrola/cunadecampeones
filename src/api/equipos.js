@@ -39,7 +39,7 @@ export const getEquipo = async (name) => {
 };
 
 export const updateEquipos = async (resultado) => {
-  if (resultado.puntos_local > resultado.puntos_visitante) {
+  if (parseInt(resultado.puntos_local) > parseInt(resultado.puntos_visitante)) {
     seteoPuntos(resultado.equipo_local, resultado.equipo_visitante, resultado);
   } else {
     seteoPuntos(resultado.equipo_visitante, resultado.equipo_local, resultado);
