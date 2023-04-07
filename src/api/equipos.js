@@ -47,16 +47,12 @@ export const updateEquipos = async (resultado) => {
 };
 
 const seteoPuntos = (ganador, perdedor, resultado) => {
-  parseInt(resultado.puntos_local);
-  parseInt(resultado.puntos_visitante);
+  const puntos_local = parseInt(resultado.puntos_local);
+  const puntos_visitante = parseInt(resultado.puntos_visitante);
   const puntos_ganador =
-    resultado.puntos_local > resultado.puntos_visitante
-      ? resultado.puntos_local
-      : resultado.puntos_visitante;
+    puntos_local > puntos_visitante ? puntos_local : puntos_visitante;
   const puntos_perdedor =
-    resultado.puntos_local < resultado.puntos_visitante
-      ? resultado.puntos_local
-      : resultado.puntos_visitante;
+    puntos_local < puntos_visitante ? puntos_local : puntos_visitante;
   getEquipo(ganador).then((res) => {
     const newPuntosLocal = res;
     newPuntosLocal.puntos = res.puntos + 2;
