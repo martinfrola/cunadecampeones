@@ -62,7 +62,7 @@ export default function PartidoCard({ partido, type }) {
           </Typography>
           {partido.cancha === "Bahiense C1" && (
             <Link
-              href="https://www.youtube.com/watch?v=2IuwhgKmMlY"
+              href="https://www.youtube.com/watch?v=YH5lUe-CqqE"
               target="_blank"
               color="secondary"
               underline="none"
@@ -73,7 +73,7 @@ export default function PartidoCard({ partido, type }) {
           )}
           {partido.cancha === "Bahiense C2" && (
             <Link
-              href="https://www.youtube.com/watch?v=ouJPjoGvmRU"
+              href="https://www.youtube.com/watch?v=rXhNbsV5sJk"
               target="_blank"
               color="secondary"
               underline="none"
@@ -84,7 +84,7 @@ export default function PartidoCard({ partido, type }) {
           )}
           {partido.cancha === "Bahiense C3" && (
             <Link
-              href="https://www.youtube.com/watch?v=ZoeVZwpPeec"
+              href="https://www.youtube.com/watch?v=KnECttpjqDI"
               target="_blank"
               color="secondary"
               underline="none"
