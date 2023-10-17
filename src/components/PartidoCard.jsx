@@ -14,12 +14,13 @@ export default function PartidoCard({ partido, type }) {
   return (
     <Card
       sx={{
-        width: 300,
+        width: 320,
         height: 150,
         marginBottom: 1,
         marginRight: 3,
         border: 1,
       }}
+      onClick={() => console.log(partido.id)}
     >
       <CardContent>
         <Box
@@ -62,7 +63,7 @@ export default function PartidoCard({ partido, type }) {
           </Typography>
           {partido.cancha === "Bahiense C1" && (
             <Link
-              href="https://www.youtube.com/watch?v=YH5lUe-CqqE"
+              href="https://www.youtube.com/watch?v=W1BUGbLb07g"
               target="_blank"
               color="secondary"
               underline="none"
@@ -73,7 +74,7 @@ export default function PartidoCard({ partido, type }) {
           )}
           {partido.cancha === "Bahiense C2" && (
             <Link
-              href="https://www.youtube.com/watch?v=rXhNbsV5sJk"
+              href="https://www.youtube.com/watch?v=MG5N0ikT84A"
               target="_blank"
               color="secondary"
               underline="none"
@@ -84,7 +85,40 @@ export default function PartidoCard({ partido, type }) {
           )}
           {partido.cancha === "Bahiense C3" && (
             <Link
-              href="https://www.youtube.com/watch?v=KnECttpjqDI"
+              href="https://www.youtube.com/watch?v=u87RnK27Mf0"
+              target="_blank"
+              color="secondary"
+              underline="none"
+              sx={{ fontWeight: "bold", fontFamily: "sans-serif" }}
+            >
+              Ver Partido
+            </Link>
+          )}
+          {partido.cancha === "Independiente" && (
+            <Link
+              href="https://www.youtube.com/watch?v=_7kAkVJBYo4"
+              target="_blank"
+              color="secondary"
+              underline="none"
+              sx={{ fontWeight: "bold", fontFamily: "sans-serif" }}
+            >
+              Ver Partido
+            </Link>
+          )}
+          {partido.cancha === "Barracas" && (
+            <Link
+              href="https://www.youtube.com/watch?v=lvspZA4qSJ4"
+              target="_blank"
+              color="secondary"
+              underline="none"
+              sx={{ fontWeight: "bold", fontFamily: "sans-serif" }}
+            >
+              Ver Partido
+            </Link>
+          )}
+          {partido.cancha === "Sportivo" && (
+            <Link
+              href="https://www.youtube.com/watch?v=d0fozfdtyss"
               target="_blank"
               color="secondary"
               underline="none"

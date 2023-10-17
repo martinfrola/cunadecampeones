@@ -122,10 +122,10 @@ export default function Resultados({ modoAuto }) {
             }}
           >
             <MenuItem value="Todas">Todas</MenuItem>
-            <MenuItem value="U-15 M">U-15 M</MenuItem>
-            <MenuItem value="U-15 F">U-15 F</MenuItem>
-            <MenuItem value="U-17 F">U-17 F</MenuItem>
-            <MenuItem value="U-17 M">U-17 M</MenuItem>
+            <MenuItem value="U-10">U-10</MenuItem>
+            <MenuItem value="U-12">U-12</MenuItem>
+            <MenuItem value="U-14 M">U-14 M</MenuItem>
+            <MenuItem value="U-14 F">U-14 F</MenuItem>
           </Select>
         </Box>
         <Box sx={{ marginRight: 5 }}>
@@ -141,9 +141,10 @@ export default function Resultados({ modoAuto }) {
             }}
           >
             <MenuItem value="Todos">Todos</MenuItem>
-            <MenuItem value={"2022-11-19"}>Sábado 19</MenuItem>
-            <MenuItem value={"2022-11-20"}>Domingo 20</MenuItem>
-            <MenuItem value={"2022-11-21"}>Lunes 21</MenuItem>
+            <MenuItem value={"2023-10-13"}>Viernes 13</MenuItem>
+            <MenuItem value={"2023-10-14"}>Sabado 14</MenuItem>
+            <MenuItem value={"2023-10-15"}>Domingo 15</MenuItem>
+            <MenuItem value={"2023-10-16"}>Lunes 16</MenuItem>
           </Select>
         </Box>
         <Box sx={{ marginRight: 3 }}>

@@ -1,19 +1,19 @@
 {
-  "short_name": "Cuna de Campeones",
-  "name": "Cuna de Campeones",
+  "short_name": "Sueños Dorados",
+  "name": "Sueños Dorados",
   "icons": [
     {
-      "src": "logo_cuna.jpeg",
+      "src": "logoSuenos.jpeg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/jpeg"
     },
     {
-      "src": "logo_cuna.jpeg",
+      "src": "logoSuenos.jpeg",
       "type": "image/jpeg",
       "sizes": "192x192"
     },
     {
-      "src": "logo_cuna.jpeg",
+      "src": "logoSuenos.jpeg",
       "type": "image/jpeg",
       "sizes": "512x512"
     }

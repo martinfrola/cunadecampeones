@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Partidos from "../components/Partidos";
 import Resultados from "../components/Resultados";
 import Posiciones from "../components/Posiciones";
-import logo from "../assests/images/logo_cuna.jpeg";
+import logo from "../assests/images/logoSuenos.jpeg";
 import Footer from "../components/Footer";
 const Home = () => {
   const [pageSelected, setPageSelected] = useState("partidos");

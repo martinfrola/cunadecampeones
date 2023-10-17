@@ -73,10 +73,10 @@ export default function AgregarPartido() {
           <MenuItem disabled value="Seleccionar">
             Seleccionar
           </MenuItem>
-          <MenuItem value="U-15 M">U-15 M</MenuItem>
-          <MenuItem value="U-15 F">U-15 F</MenuItem>
-          <MenuItem value="U-17 F">U-17 F</MenuItem>
-          <MenuItem value="U-17 M">U-17 M</MenuItem>
+            <MenuItem value="U-10">U-10</MenuItem>
+            <MenuItem value="U-12">U-12</MenuItem>
+            <MenuItem value="U-14 M">U-14 M</MenuItem>
+            <MenuItem value="U-14 F">U-14 F</MenuItem>
         </Select>
       </Box>
 
@@ -136,10 +136,8 @@ export default function AgregarPartido() {
               <MenuItem value="Bahiense C2">Bahiense C2</MenuItem>
               <MenuItem value="Bahiense C3">Bahiense C3</MenuItem>
               <MenuItem value="Sportivo">Sportivo</MenuItem>
-              <MenuItem value="Argentino">Argentino</MenuItem>
               <MenuItem value="Barracas">Barracas</MenuItem>
-              <MenuItem value="Comercial">Comercial</MenuItem>
-              <MenuItem value="Pacifico">Pacifico</MenuItem>
+              <MenuItem value="Independiente">Independiente</MenuItem>
             </Select>
           </Box>
 
@@ -151,8 +149,8 @@ export default function AgregarPartido() {
               placeholder="Fecha"
               name="fecha"
               type="date"
-              min="2023-04-06"
-              max="2023-04-09"
+              min="2023-10-13"
+              max="2023-10-16"
               onChange={(e) => handleSelectCategory(e)}
             />
           </Box>
