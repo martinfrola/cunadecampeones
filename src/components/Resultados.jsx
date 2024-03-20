@@ -11,7 +11,7 @@ import {
   InputLabel,
   CircularProgress,
 } from "@mui/material";
-import { equiposData } from "../api/equipos";
+import { getAllEquipos } from "../api/equipos";
 
 Resultados.propTypes = {
   modoAuto: PropTypes.bool,
@@ -42,7 +42,7 @@ export default function Resultados({ modoAuto }) {
         window.scrollTo(0, 180);
       }, 3000);
     }
-    equiposData().then((res) => {
+    getAllEquipos().then((res) => {
       setEquipos(res);
     });
   }, []);

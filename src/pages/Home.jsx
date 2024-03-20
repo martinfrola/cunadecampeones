@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Partidos from "../components/Partidos";
 import Resultados from "../components/Resultados";
 import Posiciones from "../components/Posiciones";
-import logo from "../assests/images/logoSuenos.jpeg";
+import logo from "../assests/images/logo_cuna.jpeg";
 import Footer from "../components/Footer";
 const Home = () => {
   const [pageSelected, setPageSelected] = useState("partidos");
@@ -37,7 +37,7 @@ const Home = () => {
           alignItems: "center",
         }}
       >
-        <img src={logo} alt="logo cuna de campeones" width="120px" />
+        <img src={logo} alt="logo cuna de campeones" width="140px" />
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Switch checked={activo} onChange={handleSwitch} />
         </Box>

@@ -8,7 +8,7 @@ import {
   InputLabel,
   CircularProgress,
 } from "@mui/material";
-import { equiposData } from "../api/equipos";
+import { getAllEquipos } from "../api/equipos";
 import TablaPosiciones from "./TablaPosiciones";
 
 export default function Posiciones() {
@@ -18,7 +18,7 @@ export default function Posiciones() {
   const [changeAuto, setChangeAuto] = useState(0);
   useEffect(() => {
     setLoading(true);
-    equiposData().then((res) => {
+    getAllEquipos().then((res) => {
       const u121 = res.filter(
         (equipo) => equipo.category === "U-12" && equipo.zona === 1
       );

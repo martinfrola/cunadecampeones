@@ -5,12 +5,14 @@ import {
   getDoc,
   setDoc,
   doc,
+  deleteDoc
 } from "firebase/firestore/lite";
 import { app } from "./main";
+import { getResultaoById } from "./resultados";
 
 const db = getFirestore(app);
 
-export const equiposData = async () => {
+export const getAllEquipos = async () => {
   const equiposCol = collection(db, "equipos");
   const equiposSnapshot = await getDocs(equiposCol);
   const equiposList = equiposSnapshot.docs.map((doc) => doc.data());
@@ -20,16 +22,15 @@ export const equiposData = async () => {
 export const addEquipo = async (data) => {
   console.log(data.id);
   try {
-    const docRef = await setDoc(doc(db, "equipos", data.name), data);
-    console.log("Document written with ID: ", docRef.id);
-    alert("Se agregó el equipo correctamente");
+    await setDoc(doc(db, "equipos", data.id.toString()), data);
+    alert("Se agregó el equipo correctamente. ");
   } catch (e) {
-    console.error("Error adding document: ", e);
+    alert(`Error guardando el equipo: ${e}` );
   }
 };
 
-export const getEquipo = async (name) => {
-  const docRef = doc(db, "equipos", name);
+export const getEquipo = async (id) => {
+  const docRef = doc(db, "equipos", id.toString());
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
     return docSnap.data();
@@ -38,38 +39,93 @@ export const getEquipo = async (name) => {
   }
 };
 
-export const updateEquipos = async (resultado) => {
-  if (parseInt(resultado.puntos_local) > parseInt(resultado.puntos_visitante)) {
-    seteoPuntos(resultado.equipo_local, resultado.equipo_visitante, resultado);
-  } else {
-    seteoPuntos(resultado.equipo_visitante, resultado.equipo_local, resultado);
+export const deleteEquipo = async (equipoId) => {
+  try {
+      const docRef = doc(db, "equipos", equipoId.toString());
+      await deleteDoc(docRef)
+      alert("El equipo se eliminó correctamente")
+  } catch (error) {
+    alert(error)
   }
+}
+
+
+export const updateEquipos = async (resultado, isEditing) => {
+  if(isEditing){
+    await revertirPuntos(resultado)
+  } 
+
+  if (parseInt(resultado.puntos_local) > parseInt(resultado.puntos_visitante)) {
+    await seteoPuntos(resultado.equipo_local_id, resultado.equipo_visitante_id, resultado);
+  } else {
+    await seteoPuntos(resultado.equipo_visitante_id, resultado.equipo_local_id, resultado);
+  }
+  
 };
 
-const seteoPuntos = (ganador, perdedor, resultado) => {
+const seteoPuntos = async (ganador, perdedor, resultado) => {
   const puntos_local = parseInt(resultado.puntos_local);
   const puntos_visitante = parseInt(resultado.puntos_visitante);
   const puntos_ganador =
     puntos_local > puntos_visitante ? puntos_local : puntos_visitante;
   const puntos_perdedor =
     puntos_local < puntos_visitante ? puntos_local : puntos_visitante;
-  getEquipo(ganador).then((res) => {
-    const newPuntosLocal = res;
-    newPuntosLocal.puntos = res.puntos + 2;
-    newPuntosLocal.puntos_favor = res.puntos_favor + parseInt(puntos_ganador);
+
+    const newPuntosLocal = await getEquipo(ganador)
+    newPuntosLocal.puntos = newPuntosLocal.puntos + 2;
+    newPuntosLocal.puntos_favor = newPuntosLocal.puntos_favor + parseInt(puntos_ganador);
     newPuntosLocal.puntos_contra =
-      res.puntos_contra + parseInt(puntos_perdedor);
-    newPuntosLocal.partidos_ganados = res.partidos_ganados + 1;
-    newPuntosLocal.partidos_perdidos = res.partidos_perdidos;
-    setDoc(doc(db, "equipos", res.name), newPuntosLocal);
-  });
-  getEquipo(perdedor).then((res) => {
-    const newPuntosLocal = res;
-    newPuntosLocal.puntos = res.puntos + 1;
-    newPuntosLocal.puntos_favor = res.puntos_favor + parseInt(puntos_perdedor);
-    newPuntosLocal.puntos_contra = res.puntos_contra + parseInt(puntos_ganador);
-    newPuntosLocal.partidos_ganados = res.partidos_ganados;
-    newPuntosLocal.partidos_perdidos = res.partidos_perdidos + 1;
-    setDoc(doc(db, "equipos", res.name), newPuntosLocal);
-  });
+    newPuntosLocal.puntos_contra + parseInt(puntos_perdedor);
+    newPuntosLocal.partidos_ganados = newPuntosLocal.partidos_ganados + 1;
+    await setDoc(doc(db, "equipos", newPuntosLocal.id.toString()), newPuntosLocal);
+
+
+    const newPuntosVisitante = await getEquipo(perdedor)
+    newPuntosVisitante.puntos = newPuntosVisitante.puntos + 1;
+    newPuntosVisitante.puntos_favor = newPuntosVisitante.puntos_favor + parseInt(puntos_perdedor);
+    newPuntosVisitante.puntos_contra = newPuntosVisitante.puntos_contra + parseInt(puntos_ganador);
+    newPuntosVisitante.partidos_perdidos = newPuntosVisitante.partidos_perdidos + 1;
+    await setDoc(doc(db, "equipos", newPuntosVisitante.id.toString()), newPuntosVisitante);
+
 };
+
+const revertirPuntos = async (resultado) => {
+  const resultadoAnterior = await getResultaoById(resultado.id);
+
+  const puntos_local = parseInt(resultadoAnterior.puntos_local);
+  const puntos_visitante = parseInt(resultadoAnterior.puntos_visitante);
+  const puntos_ganador =
+    puntos_local > puntos_visitante ? puntos_local : puntos_visitante;
+  const puntos_perdedor =
+    puntos_local < puntos_visitante ? puntos_local : puntos_visitante;
+
+    let ganadorAnteriorId
+    let perdedorAnteriorId
+
+    if (parseInt(resultadoAnterior.puntos_local) > parseInt(resultadoAnterior.puntos_visitante)) {
+      ganadorAnteriorId = resultadoAnterior.equipo_local_id
+      perdedorAnteriorId = resultadoAnterior.equipo_visitante_id
+    } else {
+      ganadorAnteriorId = resultadoAnterior.equipo_visitante_id
+      perdedorAnteriorId = resultadoAnterior.equipo_local_id
+    }
+
+    const equipoGanadorAnterior = await getEquipo(ganadorAnteriorId)
+    const newPuntosGanador = equipoGanadorAnterior;
+    newPuntosGanador.puntos = equipoGanadorAnterior.puntos - 2;
+    newPuntosGanador.puntos_favor = equipoGanadorAnterior.puntos_favor - parseInt(puntos_ganador);
+    newPuntosGanador.puntos_contra =
+    equipoGanadorAnterior.puntos_contra - parseInt(puntos_perdedor);
+    newPuntosGanador.partidos_ganados = equipoGanadorAnterior.partidos_ganados - 1;
+    newPuntosGanador.partidos_perdidos = equipoGanadorAnterior.partidos_perdidos;
+    await setDoc(doc(db, "equipos", equipoGanadorAnterior.id.toString()), newPuntosGanador);
+
+    const equipoPerdedorAnterior = await getEquipo(perdedorAnteriorId)
+    const newPuntosPerdedor = equipoPerdedorAnterior;
+    newPuntosPerdedor.puntos = equipoPerdedorAnterior.puntos - 1;
+    newPuntosPerdedor.puntos_favor = equipoPerdedorAnterior.puntos_favor - parseInt(puntos_perdedor);
+    newPuntosPerdedor.puntos_contra = equipoPerdedorAnterior.puntos_contra - parseInt(puntos_ganador);
+    newPuntosPerdedor.partidos_ganados = equipoPerdedorAnterior.partidos_ganados;
+    newPuntosPerdedor.partidos_perdidos = equipoPerdedorAnterior.partidos_perdidos - 1;
+    await setDoc(doc(db, "equipos", equipoPerdedorAnterior.id.toString()), newPuntosPerdedor);
+  }

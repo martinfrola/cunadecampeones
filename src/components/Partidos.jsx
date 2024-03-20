@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { getPartidos } from "../api/partidos";
-import { equiposData } from "../api/equipos";
+import { getAllEquipos } from "../api/equipos";
 import PartidoCard from "./PartidoCard";
 import {
   Box,
@@ -37,7 +37,7 @@ export default function Partidos({ modoAuto }) {
         window.scrollTo(0, 180);
       }, 3000);
     }
-    equiposData().then((res) => {
+    getAllEquipos().then((res) => {
       setEquipos(res);
     });
   }, []);

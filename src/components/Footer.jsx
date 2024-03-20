@@ -1,6 +1,6 @@
 import { Grid, Link, Typography } from "@mui/material";
 import React from "react";
-import logo from "../assests/images/logoSuenos.jpeg";
+import logo from "../assests/images/logo_cuna_nuevo.png";
 import logo_bahiense from "../assests/images/logo_bahiense.jpg";
 import logo_LOU from "../assests/images/logo_LOU.jpeg";
 export default function Footer() {

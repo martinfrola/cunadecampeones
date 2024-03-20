@@ -33,11 +33,10 @@ export const getPartidos = async () => {
 };
 
 export const deletePartido = async (id) => {
-  console.log(typeof id);
   try {
     await deleteDoc(doc(db, "partidos", id.toString()));
-    console.log("se borro correctamente");
+    alert("Se borro correctamente el aprtido");
   } catch (error) {
-    console.log(error);
+    alert(`Hubo un error al borrar el partido: ${error}`);
   }
 };
