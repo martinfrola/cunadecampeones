@@ -21,8 +21,10 @@ export default function Posiciones() {
     setLoading(true);
     getAllEquipos().then((res) => {
       const equiposAgrupados = agruparPorDosPropiedades(res, 'category', 'zona');
-      setEquiposFiltrados(Object.entries(equiposAgrupados).map(([key, equipos]) => ({ category: key, equipos })));
-      setLoading(false);
+    const equiposOrdenados = Object.entries(equiposAgrupados).map(([key, equipos]) => ({ category: key, equipos }));
+    equiposOrdenados.sort((a, b) => a.category.localeCompare(b.category)); // Ordenar alfabéticamente por category
+    setEquiposFiltrados(equiposOrdenados);
+    setLoading(false);
     });
   }, []);
 

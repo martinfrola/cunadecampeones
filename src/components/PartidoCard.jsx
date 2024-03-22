@@ -26,14 +26,20 @@ export default function PartidoCard({ partido, type, links }) {
     <Card
       sx={{
         width: 320,
-        height: 150,
+        height: 170,
         marginBottom: 1,
         marginRight: 3,
         border: 1,
       }}
       onClick={() => console.log(partido.id)}
     >
-      <CardContent>
+      <CardContent sx={{p:1}}>
+        <Typography 
+          color="secondary"
+          sx={{ fontWeight: "bold", fontFamily: "sans-serif", textAlign: 'center',fontSize: 18 }}
+        >
+          {partido.category}
+        </Typography>
         <Box
           sx={{
             display: "flex",
@@ -41,17 +47,17 @@ export default function PartidoCard({ partido, type, links }) {
             justifyContent: "space-between",
           }}
         >
-          <Typography sx={{ fontSize: 18, fontWeight: "bold" }}>
+          <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
             {partido.equipo_local}
           </Typography>
           {type === "resultado" && (
-            <Typography sx={{ fontSize: 18, fontWeight: "bold" }}>
+            <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
               {partido.puntos_local}
             </Typography>
           )}
         </Box>
 
-        <Typography sx={{ fontSize: 16 }}>VS</Typography>
+        <Typography sx={{ fontSize: 14 }}>VS</Typography>
         <Box
           sx={{
             display: "flex",
@@ -59,11 +65,11 @@ export default function PartidoCard({ partido, type, links }) {
             justifyContent: "space-between",
           }}
         >
-          <Typography sx={{ fontSize: 18, fontWeight: "bold" }}>
+          <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
             {partido.equipo_visitante}
           </Typography>
           {type === "resultado" && (
-            <Typography sx={{ fontSize: 18, fontWeight: "bold" }}>
+            <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
               {partido.puntos_visitante}
             </Typography>
           )}
