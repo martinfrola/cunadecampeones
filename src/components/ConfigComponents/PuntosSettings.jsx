@@ -1,9 +1,8 @@
 import { Box, Switch, Grid, InputLabel, Button, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import { categories } from "../../data/categories";
 import { getPointsConfig, addPointsConfig } from "../../api/pointsConfig";
 export const PuntosSettings = () => {
-    const [categoriesPointsConfig, setCategoriesPointsConfig] = useState(categories.map(category => ({ category: category.name, sumaPuntos: true })));
+    const [categoriesPointsConfig, setCategoriesPointsConfig] = useState([]);
 
     useEffect(() => {
         obtenerDatosFirebase();
@@ -40,13 +39,13 @@ export const PuntosSettings = () => {
         <Box sx={{m:5, p:3, borderRadius:2, border: 3, borderColor: "primary.main"}}>
             <Typography sx={{textAlign: 'center', paddingBottom: 2}} variant="h6">Configuración de suma de puntos</Typography>
             <Grid container spacing={2}>
-                {categories.map((category, index) => (
+                {categoriesPointsConfig.map((category, index) => (
                     <Grid item md={2} xl={1} key={index}>
                         <Box>
-                            <InputLabel>{category.name}</InputLabel>
+                            <InputLabel>{category.category}</InputLabel>
                             <Switch
-                                checked={categoriesPointsConfig[index]?.sumaPuntos || false}
-                                onChange={(e) => handleConfigChange(index, e, category.name)}
+                                checked={category.sumaPuntos || false}
+                                onChange={(e) => handleConfigChange(index, e, category.category)}
                             />
                         </Box>
                     </Grid>

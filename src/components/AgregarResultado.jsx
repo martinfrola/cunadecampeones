@@ -15,12 +15,16 @@ import {
 } from "@mui/material";
 import { columns } from "../dataTableConfig/resultados";
 import { categories } from "../data/categories";
+import { getPointsConfig } from "../api/pointsConfig";
+
 export default function AgregarResultado() {
   const [partidos, setPartidos] = useState([]);
   const [partidosSeleccionables, setPartidosSeleccionables] = useState([]);
   const [resultado, setResultado] = useState({});
   const [rows, setRows] = useState([])
   const [isEditing, setIsEditing] = useState(false)
+  const [pointsConfig, setPointsConfig] = useState([])
+  const [isButtonDisable, setisButtonDisable] = useState(false)
   useEffect(() => {
     getPartidos().then((res) => {
       setPartidos(res);
@@ -30,6 +34,11 @@ export default function AgregarResultado() {
     getResultados().then((res) => {
       setRows(res);
     });
+
+    getPointsConfig().then(res => {
+      setPointsConfig(res)
+      console.log(res)
+    })
   }, []);
 
   const selectCategory = (e) => {
@@ -58,11 +67,12 @@ export default function AgregarResultado() {
   };
 
   const submitResultado = async () => {
-    if(isEditing){
-      await updateEquipos(resultado, true);
-    } else {
-      await updateEquipos(resultado, false);
+    const sumaPuntos = pointsConfig.filter(res => res.category == resultado.category)
+    console.log(sumaPuntos)
+    if(sumaPuntos[0].sumaPuntos) {
+      await updateEquipos(resultado, isEditing);
     }
+    
     await addResultado(resultado);
     await deletePartido(resultado.id);
     
@@ -77,6 +87,21 @@ export default function AgregarResultado() {
       setRows(oldRows => [resultado, ...oldRows]);
     }
     setIsEditing(false)
+    setResultado({
+      puntos_visitante: "",
+      equipo_local_id: null,
+      cancha_id: "",
+      hora: "",
+      equipo_local: "",
+      fecha: "",
+      cancha: "",
+      equipo_visitante_id: null,
+      id: null,
+      puntos_local: "",
+      category: "",
+      equipo_visitante: "",
+    })
+    setisButtonDisable(false)
   };
 
   const handleEdit = (data) => {
@@ -199,7 +224,11 @@ export default function AgregarResultado() {
         <Button
           sx={{ width: "200px" }}
           variant="contained"
-          onClick={() => submitResultado()}
+          onClick={() => {
+            submitResultado()
+            setisButtonDisable(true)
+          }}
+          disabled={isButtonDisable}
         >
           Cargar Resultado
         </Button>

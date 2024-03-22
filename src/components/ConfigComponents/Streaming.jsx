@@ -1,63 +1,70 @@
 import React, { useState, useEffect } from "react";
 import { Box, TextField, Button, Grid, InputLabel, Typography } from "@mui/material";
-import { canchas } from "../../data/canchas";
 import { getStreamingData, addStreamingData } from "../../api/streaming";
+
 const Streaming = () => {
-    const [streamingUrls, setStreamingUrls] = useState(canchas.map(cancha => ({ cancha: cancha.name, url: "" })));
+    const [streamingUrls, setStreamingUrls] = useState([]);
 
-  useEffect(() => {
-    async function fetchStreamingData() {
-      try {
-        const data = await getStreamingData();
-        if(data.length > 0){
-            setStreamingUrls(data);
+    useEffect(() => {
+        async function fetchStreamingData() {
+            try {
+                const data = await getStreamingData();
+                if (data.length > 0) {
+                    setStreamingUrls(data);
+                }
+            } catch (error) {
+                console.error("Error al obtener los datos de Firebase:", error);
+            }
         }
-         // Actualizar el estado con los datos obtenidos
-      } catch (error) {
-        console.error("Error al obtener los datos de Firebase:", error);
-      }
-    }
-    fetchStreamingData();
-  }, []); // Se ejecuta solo una vez al montar el componente
-console.log(streamingUrls)
-  const handleUrlChange = (index, event) => {
-    const newUrls = [...streamingUrls];
-    newUrls[index] = { ...newUrls[index], url: event.target.value };
-    setStreamingUrls(newUrls);
-  };
+        fetchStreamingData();
+    }, []); 
 
-  const handleSave = () => {
-    console.log(streamingUrls)
-    addStreamingData(streamingUrls);
-  };
+    const handleUrlChange = (index, event, cancha) => {
+        const newUrls = [...streamingUrls];
+        newUrls[index] = { ...newUrls[index], url: event.target.value, cancha };
+        setStreamingUrls(newUrls);
+    };
 
-  return (
-    <Box sx={{ m: 5, p: 3, borderRadius: 2, border: 3, borderColor: "primary.main" }}>
-      <Typography sx={{ textAlign: 'center', paddingBottom: 2 }} variant="h6">Links Streaming</Typography>
-      <Grid container spacing={2}>
-        {canchas.map((cancha, index) => (
-          <Grid item md={4} xl={3} key={index}>
-            <Box>
-              <InputLabel>{cancha.name}</InputLabel>
-              <TextField
-                label="URL"
-                variant="outlined"
-                fullWidth
-                type="url"
-                value={streamingUrls[index]?.url || ""}
-                onChange={(event) => handleUrlChange(index, event)}
-              />
+    const handlePaste = (index, event, cancha) => {
+        const pastedText = event.clipboardData.getData('Text');
+        const newUrls = [...streamingUrls];
+        newUrls[index] = { ...newUrls[index], url: pastedText, cancha };
+        setStreamingUrls(newUrls);
+    };
+
+    const handleSave = () => {
+        console.log(streamingUrls)
+        addStreamingData(streamingUrls);
+    };
+
+    return (
+        <Box sx={{ m: 5, p: 3, borderRadius: 2, border: 3, borderColor: "primary.main" }}>
+            <Typography sx={{ textAlign: 'center', paddingBottom: 2 }} variant="h6">Links Streaming</Typography>
+            <Grid container spacing={2}>
+                {streamingUrls.map((cancha, index) => (
+                    <Grid item md={4} xl={3} key={index}>
+                        <Box>
+                            <InputLabel>{cancha.cancha}</InputLabel>
+                            <TextField
+                                label="URL"
+                                variant="outlined"
+                                fullWidth
+                                type="url"
+                                value={cancha.url || ""}
+                                onChange={(event) => handleUrlChange(index, event, cancha.cancha)}
+                                onPaste={(event) => handlePaste(index, event, cancha.cancha)}
+                            />
+                        </Box>
+                    </Grid>
+                ))}
+            </Grid>
+            <Box sx={{ mt: 3, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Button variant="contained" color="primary" onClick={handleSave}>
+                    Guardar
+                </Button>
             </Box>
-          </Grid>
-        ))}
-      </Grid>
-      <Box sx={{ mt: 3, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Button variant="contained" color="primary" onClick={handleSave}>
-          Guardar
-        </Button>
-      </Box>
-    </Box>
-  );
+        </Box>
+    );
 };
 
 export default Streaming;

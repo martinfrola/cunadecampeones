@@ -12,6 +12,9 @@ import {
   InputLabel,
   CircularProgress,
 } from "@mui/material";
+import { categories } from "../data/categories";
+import { getStreamingData } from "../api/streaming";
+
 
 Partidos.propTypes = {
   modoAuto: PropTypes.bool,
@@ -24,22 +27,28 @@ export default function Partidos({ modoAuto }) {
   const [categoria, setCategoria] = useState("Todas");
   const [equipos, setEquipos] = useState([]);
   const [equipoSeleccionado, setEquipoSeleccionado] = useState("Todos");
-
+  const [links, setLinks] = useState([]) 
   useEffect(() => {
     setLoading(true);
-    getPartidos().then((res) => {
-      setPartidos(res);
-      setPartidosSeleccionables(res);
-      setLoading(false);
-    });
+    async function fetchStreamingData() {
+      const partidosFetch = await getPartidos()
+      setPartidos(partidosFetch);
+      setPartidosSeleccionables(partidosFetch);
+
+      const equiposFetch = await getAllEquipos()
+      setEquipos(equiposFetch)
+
+      const streamingFetch = await getStreamingData()
+      setLinks(streamingFetch)
+
+      setLoading(false)
+    }
+    fetchStreamingData()
     if (modoAuto) {
       setTimeout(() => {
         window.scrollTo(0, 180);
       }, 3000);
     }
-    getAllEquipos().then((res) => {
-      setEquipos(res);
-    });
   }, []);
 
   useEffect(() => {
@@ -136,11 +145,12 @@ export default function Partidos({ modoAuto }) {
               setCategoria(e.target.value);
             }}
           >
-            <MenuItem value="Todas">Todas</MenuItem>
-            <MenuItem value="U-10">U-10</MenuItem>
-            <MenuItem value="U-12">U-12</MenuItem>
-            <MenuItem value="U-14 M">U-14 M</MenuItem>
-            <MenuItem value="U-14 F">U-14 F</MenuItem>
+            <MenuItem  value="Todas">
+              Todas
+            </MenuItem>
+            {categories.map(category => (
+              <MenuItem key={category.name} value={category.name}>{category.name}</MenuItem>
+            ))}
           </Select>
         </Box>
 
@@ -157,10 +167,10 @@ export default function Partidos({ modoAuto }) {
             }}
           >
             <MenuItem value="Todos">Todos</MenuItem>
-            <MenuItem value={"2023-10-13"}>Viernes 13</MenuItem>
-            <MenuItem value={"2023-10-14"}>Sabado 14</MenuItem>
-            <MenuItem value={"2023-10-15"}>Domingo 15</MenuItem>
-            <MenuItem value={"2023-10-16"}>Lunes 16</MenuItem>
+            <MenuItem value={"2024-03-28"}>Viernes 28</MenuItem>
+            <MenuItem value={"2024-03-29"}>Sabado 29</MenuItem>
+            <MenuItem value={"2024-03-30"}>Domingo 30</MenuItem>
+            <MenuItem value={"2024-03-31"}>Lunes 31</MenuItem>
           </Select>
         </Box>
         <Box sx={{ marginRight: 3 }}>
@@ -212,7 +222,7 @@ export default function Partidos({ modoAuto }) {
         ) : (
           partidosSeleccionables.map((partido) => (
             <Grid item xs={12} sm={6} lg={4} xl={3} key={partido.id}>
-              <PartidoCard partido={partido} type="partido" />
+              <PartidoCard partido={partido} type="partido" links={links} />
             </Grid>
           ))
         )}

@@ -43,6 +43,11 @@ export default function AgregarEquipo() {
   };
 
   const handleSubmit = async() => {
+    dataEquipo.puntos= parseInt(dataEquipo.puntos)
+    dataEquipo.partidos_ganados= parseInt(dataEquipo.partidos_ganados)
+    dataEquipo.partidos_perdidos= parseInt(dataEquipo.partidos_perdidos)
+    dataEquipo.puntos_favor= parseInt(dataEquipo.puntos_favor)
+    dataEquipo.puntos_contra= parseInt(dataEquipo.puntos_contra)
     await addEquipo(dataEquipo)
     setDataEquipo({
       id: null,
@@ -118,9 +123,9 @@ export default function AgregarEquipo() {
             <MenuItem disabled value="">
               Seleccionar
             </MenuItem>
-          {categories.map(category => (
-            <MenuItem key={category.name} value={category.name}>{category.name}</MenuItem>
-          ))}
+            {categories.map(category => (
+              <MenuItem key={category.name} value={category.name}>{category.name}</MenuItem>
+            ))}
           </Select>
         </Grid>
         <Grid item xs={12} sm={6}>

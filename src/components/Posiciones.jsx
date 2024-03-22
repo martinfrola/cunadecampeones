@@ -16,51 +16,26 @@ export default function Posiciones() {
   const [categoria, setCategoria] = useState("Todas");
   const [equiposFiltrados, setEquiposFiltrados] = useState([]);
   const [changeAuto, setChangeAuto] = useState(0);
+
   useEffect(() => {
     setLoading(true);
     getAllEquipos().then((res) => {
-      const u121 = res.filter(
-        (equipo) => equipo.category === "U-12" && equipo.zona === 1
-      );
-      const u122 = res.filter(
-        (equipo) => equipo.category === "U-12" && equipo.zona === 2
-      );
-      const u123 = res.filter(
-        (equipo) => equipo.category === "U-12" && equipo.zona === 3
-      );
-      const u124 = res.filter(
-        (equipo) => equipo.category === "U-12" && equipo.zona === 4
-      );
-      const u14f1 = res.filter(
-        (equipo) => equipo.category === "U-14 F" && equipo.zona === 1
-      );
-      const u14m1 = res.filter(
-        (equipo) => equipo.category === "U-14 M" && equipo.zona === 1
-      );
-      const u14m2 = res.filter(
-        (equipo) => equipo.category === "U-14 M" && equipo.zona === 2
-      );
-      const u14m3 = res.filter(
-        (equipo) => equipo.category === "U-14 M" && equipo.zona === 3
-      );
-      const u14m4 = res.filter(
-        (equipo) => equipo.category === "U-14 M" && equipo.zona === 4
-      );
-      setEquiposFiltrados([
-        { category: "U-12 Zona 1", equipos: u121 },
-        { category: "U-12 Zona 2", equipos: u122 },
-        { category: "U-12 Zona 3", equipos: u123 },
-        { category: "U-12 Zona 4", equipos: u124 },
-        { category: "U-14 F Zona 1", equipos: u14f1 },
-        { category: "U-14 M Zona 1", equipos: u14m1 },
-        { category: "U-14 M Zona 2", equipos: u14m2 },
-        { category: "U-14 M Zona 3", equipos: u14m3 },
-        { category: "U-14 M Zona 4", equipos: u14m4 },
-      ]);
-
+      const equiposAgrupados = agruparPorDosPropiedades(res, 'category', 'zona');
+      setEquiposFiltrados(Object.entries(equiposAgrupados).map(([key, equipos]) => ({ category: key, equipos })));
       setLoading(false);
     });
   }, []);
+
+  const agruparPorDosPropiedades = (array, prop1, prop2) => {
+    return array.reduce((acc, equipo) => {
+      const key = equipo[prop1] + " Zona " + equipo[prop2];
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(equipo);
+      return acc;
+    }, {});
+  };
 
   const changeCategoria = (val) => {
     if (val === "Auto") {

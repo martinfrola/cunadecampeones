@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -8,9 +8,20 @@ import { Box, Link } from "@mui/material";
 PartidoCard.propTypes = {
   partido: PropTypes.object,
   type: PropTypes.string,
+  links: PropTypes.array
 };
 
-export default function PartidoCard({ partido, type }) {
+export default function PartidoCard({ partido, type, links }) {
+
+  const [link, setLink] = useState("")
+  useEffect(() => {
+    const linkCancha = links.filter(link => link.cancha == partido.cancha)
+    console.log(links, linkCancha)
+    if(linkCancha.length > 0){
+      setLink(linkCancha[0].url)
+    }
+    
+  }, [])
   return (
     <Card
       sx={{
@@ -61,9 +72,9 @@ export default function PartidoCard({ partido, type }) {
           <Typography sx={{ fontWeight: "bold" }} color="primary.blue">
             Cancha: {partido.cancha}
           </Typography>
-          {partido.cancha === "Bahiense C1" && (
+          {link != "" &&
             <Link
-              href="https://www.youtube.com/watch?v=W1BUGbLb07g"
+              href={link}
               target="_blank"
               color="secondary"
               underline="none"
@@ -71,62 +82,8 @@ export default function PartidoCard({ partido, type }) {
             >
               Ver Partido
             </Link>
-          )}
-          {partido.cancha === "Bahiense C2" && (
-            <Link
-              href="https://www.youtube.com/watch?v=MG5N0ikT84A"
-              target="_blank"
-              color="secondary"
-              underline="none"
-              sx={{ fontWeight: "bold", fontFamily: "sans-serif" }}
-            >
-              Ver Partido
-            </Link>
-          )}
-          {partido.cancha === "Bahiense C3" && (
-            <Link
-              href="https://www.youtube.com/watch?v=u87RnK27Mf0"
-              target="_blank"
-              color="secondary"
-              underline="none"
-              sx={{ fontWeight: "bold", fontFamily: "sans-serif" }}
-            >
-              Ver Partido
-            </Link>
-          )}
-          {partido.cancha === "Independiente" && (
-            <Link
-              href="https://www.youtube.com/watch?v=_7kAkVJBYo4"
-              target="_blank"
-              color="secondary"
-              underline="none"
-              sx={{ fontWeight: "bold", fontFamily: "sans-serif" }}
-            >
-              Ver Partido
-            </Link>
-          )}
-          {partido.cancha === "Barracas" && (
-            <Link
-              href="https://www.youtube.com/watch?v=lvspZA4qSJ4"
-              target="_blank"
-              color="secondary"
-              underline="none"
-              sx={{ fontWeight: "bold", fontFamily: "sans-serif" }}
-            >
-              Ver Partido
-            </Link>
-          )}
-          {partido.cancha === "Sportivo" && (
-            <Link
-              href="https://www.youtube.com/watch?v=d0fozfdtyss"
-              target="_blank"
-              color="secondary"
-              underline="none"
-              sx={{ fontWeight: "bold", fontFamily: "sans-serif" }}
-            >
-              Ver Partido
-            </Link>
-          )}
+          }
+          
         </Box>
 
         <Box
