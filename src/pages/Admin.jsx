@@ -4,7 +4,7 @@ import AgregarPartido from "../components/AgregarPartido";
 import AgregarResultado from "../components/AgregarResultado";
 import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Box } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import Logo from '../assests/images/logo_cuna.jpeg'; // Importar la imagen
+import Logo from '../assests/images/logoSuenos.jpeg'; // Importar la imagen
 import Configuracion from "../components/Configuracion";
 const Admin = () => {
   const [pageSelected, setPageSelected] = useState("agregarResultado");
