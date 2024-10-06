@@ -36,8 +36,9 @@ export default function Resultados({ modoAuto }) {
 
     async function fetchStreamingData() {
       const resultadosFetch = await getResultados()
-      setResultados(resultadosFetch);
-      setResultadosSeleccionables(resultadosFetch);
+      const resultadosFiltrados = resultadosFetch.filter(res => res.category != "U-10")
+      setResultados(resultadosFiltrados);
+      setResultadosSeleccionables(resultadosFiltrados);
 
       const equiposFetch = await getAllEquipos()
       setEquipos(equiposFetch)
