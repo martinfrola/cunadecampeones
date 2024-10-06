@@ -149,10 +149,9 @@ export default function Resultados({ modoAuto }) {
             }}
           >
             <MenuItem value="Todos">Todos</MenuItem>
-            <MenuItem value={"2024-03-28"}>Jueves 28</MenuItem>
-            <MenuItem value={"2024-03-29"}>Viernes 29</MenuItem>
-            <MenuItem value={"2024-03-30"}>Sabado 30</MenuItem>
-            <MenuItem value={"2024-03-31"}>Domingo 31</MenuItem>
+            <MenuItem value={"2024-10-11"}>Viernes 11</MenuItem>
+            <MenuItem value={"2024-10-12"}>Sabado 12</MenuItem>
+            <MenuItem value={"2024-10-13"}>Domingo 13</MenuItem>
           </Select>
         </Box>
         <Box sx={{ marginRight: 3 }}>

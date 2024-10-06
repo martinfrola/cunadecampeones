@@ -13,7 +13,7 @@ export default function Footer() {
             <img
               src={imagen}
               alt={`Imagen ${index + 1}`}
-              style={{ maxWidth: 200 }}
+              style={{ height: 200 }}
             />
           </Grid>
         ))}

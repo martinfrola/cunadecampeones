@@ -20,7 +20,9 @@ export default function Posiciones() {
   useEffect(() => {
     setLoading(true);
     getAllEquipos().then((res) => {
-      const equiposAgrupados = agruparPorDosPropiedades(res, 'category', 'zona');
+      const equiposFiltrados = res.filter(equipo => equipo.category !== "U-10");
+      console.log(res, equiposFiltrados)
+      const equiposAgrupados = agruparPorDosPropiedades(equiposFiltrados, 'category', 'zona');
     const equiposOrdenados = Object.entries(equiposAgrupados).map(([key, equipos]) => ({ category: key, equipos }));
     equiposOrdenados.sort((a, b) => a.category.localeCompare(b.category)); // Ordenar alfabéticamente por category
     setEquiposFiltrados(equiposOrdenados);

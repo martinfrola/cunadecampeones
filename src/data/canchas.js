@@ -10,19 +10,16 @@ export const canchas = [
         name: "Bahiense C3"
     },
     {
-        name: "Sportivo"   
+        name: "Estrella"   
     },
     {
-        name: "Naposta"   
+        name: "Olimpo C1"   
     },
     {
-        name: "Independiente"
+        name: "Olimpo C2"
     },
     {
-        name: "Estrella"
-    },
-    {
-        name: "9 de Julio"
+        name: "Olimpo C3"
     }
 
 ]

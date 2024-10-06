@@ -16,7 +16,6 @@ export default function PartidoCard({ partido, type, links }) {
   const [link, setLink] = useState("")
   useEffect(() => {
     const linkCancha = links.filter(link => link.cancha == partido.cancha)
-    console.log(links, linkCancha)
     if(linkCancha.length > 0){
       setLink(linkCancha[0].url)
     }

@@ -1,23 +1,14 @@
 export const categories = [
     {
-        name: "U-13 M" 
+        name: "U-10" 
     },
     {
-        name: "U-13 F" 
+        name: "U-12" 
     },
     {
-        name: "U-15 M"
+        name: "U-14 M"
     },
     {
-        name: "U-15 F"
-    },
-    {
-        name: "U-17 M"
-    },
-    {
-        name: "U-17 F"
-    },
-    {
-        name: "U-19 M"
+        name: "U-14 F"
     }
 ]
