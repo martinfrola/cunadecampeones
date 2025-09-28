@@ -1,14 +1,7 @@
 export const categories = [
-    {
-        name: "U-10" 
-    },
-    {
-        name: "U-12" 
-    },
-    {
-        name: "U-14 M"
-    },
-    {
-        name: "U-14 F"
-    }
-]
+    { name: "U15 Masculino" },
+    { name: "U17 Masculino" },
+    { name: "U19 Masculino" },
+    { name: "U15 Femenino" },
+    { name: "U17 Femenino" }
+];

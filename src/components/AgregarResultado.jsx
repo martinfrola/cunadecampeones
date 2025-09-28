@@ -37,7 +37,7 @@ export default function AgregarResultado() {
 
     getPointsConfig().then(res => {
       setPointsConfig(res)
-      console.log(res)
+      console.log('PointsConfig',res)
     })
   }, []);
 

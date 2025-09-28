@@ -10,7 +10,7 @@ import {
   const db = getFirestore(app);
 
   export const getPointsConfig= async () => {
-    const pointsConfig = collection(db, "pointsConfig");
+    const pointsConfig = collection(db, "PointsConfig");
     const pointsConfigSnapshot = await getDocs(pointsConfig);
     const pointsConfigSnapshotList = pointsConfigSnapshot.docs.map((doc) => doc.data());
     return pointsConfigSnapshotList;
@@ -20,7 +20,7 @@ import {
     try {
         // Usar forEach para iterar sobre cada objeto en el array y guardarlos en Firebase
         data.forEach(async (obj) => {
-            await setDoc(doc(db, "pointsConfig", obj.category), obj);
+            await setDoc(doc(db, "PointsConfig", obj.category), obj);
         });
         alert("Se guardaron los datos correctamnte")
     } catch (error) {

@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "suenosdorados",
+    "site": "cunadecampeones",
     "public": "build",
     "rewrites": [
       {
